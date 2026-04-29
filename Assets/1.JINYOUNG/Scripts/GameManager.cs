@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
         boomLife_1.SetActive(true);
         boomLife_2.SetActive(true);
         retryButton.SetActive(false);
-        gameOverText.gameObject.SetActive(false);
         gameOverText = GameObject.Find("GameOverText").GetComponent<TextMeshProUGUI>();
+        gameOverText.gameObject.SetActive(false);    
     }
 
     
