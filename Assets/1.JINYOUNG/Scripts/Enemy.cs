@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        // FirePoint 자식 오브젝트 수집
+        // FirePoint 찾아 넣기
         firePoint0 = transform.Find("FirePoint_0");
         firePoint1 = transform.Find("FirePoint_1");
 
@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //적 발사 함수
     void Shoot()
     {
         if (firePoint0 != null && enemyBulletPrefab0 != null)
@@ -97,4 +98,48 @@ public class Enemy : MonoBehaviour
         if (enemyType == EnemyType.C && firePoint1 != null && enemyBulletPrefab1 != null)
             Instantiate(enemyBulletPrefab1, firePoint1.position, firePoint1.rotation);
     }
+
+    // 충돌 처리: 플레이어 총알 → 피격 / 플레이어 본체 → PlayerCont에서 처리
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("PlayerBullet"))
+        {
+            PlayerBullet playerBullet = other.gameObject.GetComponent<PlayerBullet>();
+            Hit(playerBullet.damage);
+            Destroy(other.gameObject);
+        }
+    }
+
+// 피격 처리: 체력 감소 → 피격 스프라이트 표시 → 사망 판정
+    public void Hit(int damage)
+    {
+        if (isDead) return;
+        hp -= damage;
+
+        // 0.1초간 피격 스프라이트로 변경 후 원래대로 복구
+        sr.sprite = sprites[1];
+        Invoke("ReturnDefaultSprite", 0.1f);
+
+        // 체력이 0 이하면 점수 합산, 아이템 드랍 후 오브젝트 제거
+        // if (health <= 0)
+        // {
+        //     isDead = true;
+        //     GameManager gm = FindAnyObjectByType<GameManager>();
+        //     if (gm != null)
+        //     {
+        //         gm.AddScore(exp);
+        //         gm.CreateItem(transform.position);
+        //     }
+        //     Destroy(gameObject);
+        // }
+    }
+
+    // 기본 스프라이트로 되돌리기 (Invoke로 0.1초 후 호출됨)
+    private void ReturnDefaultSprite()
+    {
+        sr.sprite = sprites[0];
+    }
+
+
+
 }

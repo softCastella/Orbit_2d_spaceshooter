@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         gameOverText = GameObject.Find("GameOverText").GetComponent<TextMeshProUGUI>();
         gameOverText.gameObject.SetActive(false);    
     }
-
     
     void Update()
     {
