@@ -13,6 +13,13 @@ public class EnemyBulletController : MonoBehaviour
     void Update()
     {
         transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+
+        // 화면 밖으로 나가면 제거
+        Vector3 vp = Camera.main.WorldToViewportPoint(transform.position);
+        if (vp.x < -0.1f || vp.x > 1.1f || vp.y < -0.1f || vp.y > 1.1f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     //플레이어와 충돌 시 데미지 전달 후 총알 제거
