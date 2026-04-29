@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,22 +8,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
+
         float x = 0f;
         float y = 0f;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (keyboard.leftArrowKey.isPressed)
             x = -1f;
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (keyboard.rightArrowKey.isPressed)
             x = 1f;
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (keyboard.upArrowKey.isPressed)
             y = 1f;
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (keyboard.downArrowKey.isPressed)
             y = -1f;
 
         transform.Translate(new Vector3(x, y, 0) * speed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keyboard.spaceKey.wasPressedThisFrame)
         {
             GameObject bulletGo = Instantiate(bulletPrefab);
             bulletGo.transform.position = transform.position;
