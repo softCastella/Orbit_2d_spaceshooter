@@ -46,13 +46,13 @@ public class Enemy : MonoBehaviour
         switch (enemyType)
         {
             case EnemyType.A:
-                hp = 80; power = 1f; speed = 1f; exp = 10; shootInterval = 2f; damage = 10; //적당히 빠른애
+                hp = 10; power = 1f; speed = 1f; exp = 10; shootInterval = 2f; damage = 10; //적당히 빠른애
                 break; 
             case EnemyType.B:
-                hp = 100; power = 1.5f; speed = 1.5f; exp = 15; shootInterval = 1.5f; damage = 15; //가장 빠른애
+                hp = 20; power = 1.5f; speed = 1.5f; exp = 15; shootInterval = 1.5f; damage = 15; //가장 빠른애
                 break;
             case EnemyType.C:
-                hp = 200; power = 3f; speed = 0.5f; exp = 20; shootInterval = 3f; damage = 30;  //가장 느린애
+                hp = 30; power = 3f; speed = 0.5f; exp = 20; shootInterval = 3f; damage = 30;  //가장 느린애
                 break;
         }
 
@@ -118,31 +118,33 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return;
         hp -= damage;
+        Debug.Log($"{gameObject.name} hit! HP: {hp}");
 
         // 0.1초간 피격 스프라이트로 변경 후 원래대로 복구
-        sr.sprite = sprites[1];
-        Invoke("ReturnDefaultSprite", 0.1f);
+        if (sprites != null && sprites.Length > 1)
+        {
+            sr.sprite = sprites[1];
+            Invoke("ReturnDefaultSprite", 0.1f);
+        }
 
         // 체력이 0 이하면 점수 합산, 아이템 드랍 후 오브젝트 제거
-        // if (hp <= 0)
-        // {
-        //     isDead = true;
-        //     GameManager gm = FindAnyObjectByType<GameManager>();
+        if (hp <= 0)
+        {   
+            hp = 0;
+            isDead = true;
+            GameManager gm = FindAnyObjectByType<GameManager>();
         //     if (gm != null)
         //     {
         //         gm.AddScore(exp);
         //         gm.CreateItem(transform.position);
         //     }
-        //     Destroy(gameObject);
-        // }
+            Destroy(gameObject);
+        }
     }
 
     // 기본 스프라이트로 되돌리기 (Invoke로 0.1초 후 호출됨)
-    private void ReturnDefaultSprite()
+    public void ReturnDefaultSprite()
     {
         sr.sprite = sprites[0];
     }
-
-
-
 }
