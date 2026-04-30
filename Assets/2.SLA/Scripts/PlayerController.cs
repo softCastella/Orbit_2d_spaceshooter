@@ -28,30 +28,49 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float x = Input.GetAxisRaw("Horizontal"); // WASD + 방향키 모두 인식
+        float y = Input.GetAxisRaw("Vertical");    // WASD + 방향키 모두 인식
 
         transform.Translate(new Vector3(x, y, 0) * speed * Time.deltaTime);
 
-        // GetKey : 키를 누르고 있는 동안 매 프레임 true
-        // Time.time >= nextFireTime : 마지막 발사 후 fireRate 초가 지났을 때만 발사
-        if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
+        // 화면 경계 계산 후 플레이어 위치 제한
+        Vector3 min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, min.x, max.x),
+            Mathf.Clamp(transform.position.y, min.y, max.y),
+            transform.position.z
+        );
+
+        // [변경 전] Space 키 발사
+        // if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
+        // [변경 후] 마우스 왼쪽 클릭 발사
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
             Fire();
             // 다음 발사 가능 시각을 현재 시각 + 간격으로 갱신
             nextFireTime = Time.time + fireRate;
         }
+
+        // [추가] 마우스 오른쪽 클릭 폭탄 발사
+        if (Input.GetMouseButtonDown(1))
+        {
+            Bomb();
+        }
         
         //Player 프리팹 메카님 : Idle, Left, Right 전환
         // -1(왼쪽), 0(정지), 1(오른쪽)
-        float h = Input.GetAxisRaw("Horizontal"); 
+        float h = Input.GetAxisRaw("Horizontal"); // WASD + 방향키 모두 인식
 
-        if (h < 0) // 왼쪽 누름
-            anim.SetInteger("State", 1);
-        else if (h > 0) // 오른쪽 누름
-            anim.SetInteger("State", 2);
-        else // 아무것도 안 누름
-            anim.SetInteger("State", 0);
+        if (anim != null)
+        {
+            if (h < 0) // 왼쪽 누름
+                anim.SetInteger("State", 1);
+            else if (h > 0) // 오른쪽 누름
+                anim.SetInteger("State", 2);
+            else // 아무것도 안 누름
+                anim.SetInteger("State", 0);
+        }
     }
 
     void Fire()
@@ -70,5 +89,11 @@ public class PlayerController : MonoBehaviour
         // FirePoint 위치에 총알 생성 (FirePoint 없으면 플레이어 위치 사용)
         Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;
         Instantiate(bulletPrefabs[index], spawnPos, Quaternion.identity);
+    }
+
+    void Bomb()
+    {
+        // TODO: 폭탄 프리팹 및 로직 연결
+        Debug.Log("[PlayerController] 폭탄 발사!");
     }
 }
