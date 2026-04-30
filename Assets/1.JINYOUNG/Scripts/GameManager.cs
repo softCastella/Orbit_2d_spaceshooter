@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     //UI관련
-    private GameObject life_0;
-    private GameObject life_1;
-    private GameObject life_2;
-    private GameObject boomLife_0;
-    private GameObject boomLife_1;
-    private GameObject boomLife_2;
+    public GameObject life_0;
+    public GameObject life_1;
+    public GameObject life_2;
+    public GameObject boomLife_0;
+    public GameObject boomLife_1;
+    public GameObject boomLife_2;
     public GameObject retryButton;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;

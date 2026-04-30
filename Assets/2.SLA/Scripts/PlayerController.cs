@@ -158,6 +158,15 @@ public class PlayerController : MonoBehaviour
                 if (inZone)
                     Destroy(enemy.gameObject);
             }
+            // 폭탄 영역 안에 있는 적 총알만 소멸
+            EnemyBulletController[] bullets = FindObjectsByType<EnemyBulletController>(FindObjectsInactive.Exclude);
+            foreach (EnemyBulletController bullet in bullets)
+            {
+                if (bullet == null) continue;
+                Collider2D bCol = bullet.GetComponent<Collider2D>();
+                bool bulletInZone = bCol != null ? b.Intersects(bCol.bounds) : b.Contains(bullet.transform.position);
+                if (bulletInZone) Destroy(bullet.gameObject);
+            }
             elapsed += Time.deltaTime;
             yield return null;
         }
