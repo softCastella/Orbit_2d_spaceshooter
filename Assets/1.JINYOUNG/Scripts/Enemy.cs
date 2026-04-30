@@ -46,13 +46,13 @@ public class Enemy : MonoBehaviour
         switch (enemyType)
         {
             case EnemyType.A:
-                hp = 10; power = 0.7f; speed = 1f; exp = 10; shootInterval = 2f; damage = 10; //적당히 빠른애
+                hp = 10; power = 0.7f; speed = 1f; exp = 10; shootInterval = 2f; damage = 10; exp = 10;//적당히 빠른애
                 break; 
             case EnemyType.B:
-                hp = 20; power = 1.5f; speed = 1.5f; exp = 15; shootInterval = 1.5f; damage = 15; //가장 빠른애
+                hp = 20; power = 1.5f; speed = 1.5f; exp = 15; shootInterval = 1.5f; damage = 15; exp = 20;//가장 빠른애
                 break;
             case EnemyType.C:
-                hp = 30; power = 3f; speed = 0.5f; exp = 20; shootInterval = 3f; damage = 30;  //가장 느린애
+                hp = 30; power = 3f; speed = 0.5f; exp = 20; shootInterval = 3f; damage = 30; exp = 30;  //가장 느린애
                 break;
         }
 
@@ -133,11 +133,8 @@ public class Enemy : MonoBehaviour
             hp = 0;
             isDead = true;
             GameManager gm = FindAnyObjectByType<GameManager>();
-        //     if (gm != null)
-        //     {
-        //         gm.AddScore(exp);
-        //         gm.CreateItem(transform.position);
-        //     }
+            if (gm != null)
+                gm.AddScore(exp);
             Destroy(gameObject);
         }
     }

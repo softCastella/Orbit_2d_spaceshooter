@@ -115,7 +115,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2311659948842064771, guid: 6520dda4a70dfbf40a55b7af39ecda4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139,6 +139,8 @@ Animation:
   m_Animation: {fileID: 7400000, guid: bd6f4aced40fdcd42bc554e89d74d9da, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: bd6f4aced40fdcd42bc554e89d74d9da, type: 2}
+  - {fileID: 7400000, guid: 08e63f87b2a937e4080f8d95bb00d913, type: 2}
+  - {fileID: 7400000, guid: bbdf09ac74b02c540bbd72be716563b8, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -162,6 +164,9 @@ MonoBehaviour:
   - {fileID: 5435145552334839499, guid: 71506e8216670d3489115d357b6832ab, type: 3}
   firePoint: {fileID: 3177702164307557106}
   speed: 5
+  cooldown: 0.15
+  graceTime: 0.08
+  bombPrefab: {fileID: 6308005596735088318, guid: 94760adab9a3dcb43b231c71c2331572, type: 3}
 --- !u!50 &-3481447273898453414
 Rigidbody2D:
   serializedVersion: 5

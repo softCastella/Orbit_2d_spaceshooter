@@ -352,10 +352,38 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3519894625920631235, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519894625920631235, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
+      propertyPath: 'm_Animations.Array.data[3]'
+      value: 
+      objectReference: {fileID: 7400000, guid: 11e114330e33f2c448f24f28d648acd3, type: 2}
     - target: {fileID: 3522835462311807282, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 5476846907727989139, guid: bbcc6de30b3d96245a11dca134e2bdbb, type: 3}
+    - target: {fileID: 4589020387913106398, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589020387913106398, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
+      propertyPath: fireRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589020387913106398, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
+      propertyPath: bombEffect
+      value: 
+      objectReference: {fileID: 6308005596735088318, guid: 94760adab9a3dcb43b231c71c2331572, type: 3}
+    - target: {fileID: 4589020387913106398, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
+      propertyPath: bulletPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589020387913106398, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
+      propertyPath: 'bulletPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5959821605125805599, guid: 790d1b99d0a4f4b4a9af728e8d12ee88, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -833,21 +861,6 @@ RectTransform:
   m_AnchoredPosition: {x: 164.3, y: -61}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1264270155431449861
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2186494808134605642}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.43588, y: 16.29199, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483658655630534988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,23 +1041,6 @@ GameObject:
   m_Layer: 0
   m_Name: Top_1
   m_TagString: Background
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &2186494808134605642
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1264270155431449861}
-  - component: {fileID: 4364412286849998396}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1339,6 +1335,10 @@ PrefabInstance:
     - target: {fileID: 1094932593619437243, guid: 793d04b22303e9e46a277df88e191009, type: 3}
       propertyPath: m_Name
       value: EnemySpawnerGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094932593619437243, guid: 793d04b22303e9e46a277df88e191009, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3219013644938220574, guid: 793d04b22303e9e46a277df88e191009, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1660,32 +1660,6 @@ RectTransform:
   m_AnchoredPosition: {x: 267.7, y: -61}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4364412286849998396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2186494808134605642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e067093abbdb0524ea7438ffc5765a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  life_0: {fileID: 2352395976223382103}
-  life_1: {fileID: 7832783934504537924}
-  life_2: {fileID: 2591495421142103957}
-  boomLife_0: {fileID: 3817808098968367639}
-  boomLife_1: {fileID: 421697490957994302}
-  boomLife_2: {fileID: 4752497189241693782}
-  retryButton: {fileID: 139322615767663644}
-  scoreText: {fileID: 8782832551296367152}
-  gameOverText: {fileID: 6502781480083720137}
-  score: 0
-  player: {fileID: 0}
-  enemy: {fileID: 0}
-  playerBullet: {fileID: 0}
-  isGameOver: 0
 --- !u!212 &4720571077518134302
 SpriteRenderer:
   serializedVersion: 2
@@ -2831,6 +2805,5 @@ SceneRoots:
   - {fileID: 5754738460466679134}
   - {fileID: 3533698409108049310}
   - {fileID: 1916560412}
-  - {fileID: 1264270155431449861}
   - {fileID: 1178274830}
   - {fileID: 3152534106416209463}
