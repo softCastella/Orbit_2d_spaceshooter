@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
         switch (enemyType)
         {
             case EnemyType.A:
-                hp = 10; power = 1f; speed = 1f; exp = 10; shootInterval = 2f; damage = 10; //적당히 빠른애
+                hp = 10; power = 0.7f; speed = 1f; exp = 10; shootInterval = 2f; damage = 10; //적당히 빠른애
                 break; 
             case EnemyType.B:
                 hp = 20; power = 1.5f; speed = 1.5f; exp = 15; shootInterval = 1.5f; damage = 15; //가장 빠른애
