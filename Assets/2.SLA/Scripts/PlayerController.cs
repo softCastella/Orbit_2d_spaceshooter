@@ -1,8 +1,9 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    //anim이라는 이름의 Animator를 쓸 거라는 변수 선언
+    Animator anim;
     // 파워 단계별 총알 프리팹 배열 (인덱스 0 = 파워1, 1 = 파워2, 2 = 파워3)
     // Inspector에서 PlayerBullet0, PlayerBullet1, PlayerBullet2 순서로 연결
     public GameObject[] bulletPrefabs = new GameObject[3];
@@ -13,22 +14,44 @@ public class PlayerController : MonoBehaviour
     // 플레이어 이동 속도
     public float speed = 5f;
 
+    // 발사 간격(초) : 0.3이면 1초에 약 3발
+    public float fireRate = 0.3f;
+
+    // 다음 발사가 가능한 시각을 기억해 두는 변수
+    float nextFireTime = 0f;
+    
+    void Start()
+    {
+        //게임 오브젝트에 붙어있는 Animator 컴포넌트를 찾아서 anim에 넣어주기
+        anim = GetComponent<Animator>();
+    }
+
     void Update()
     {
-        // 키보드 입력 객체 가져오기 (New Input System)
-        var keyboard = Keyboard.current;
-        if (keyboard == null) return;
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
 
-        // 좌우(x), 상하(y) 입력값을 -1 / 0 / 1 로 읽기
-        float x = (keyboard.rightArrowKey.isPressed ? 1f : 0f) - (keyboard.leftArrowKey.isPressed ? 1f : 0f);
-        float y = (keyboard.upArrowKey.isPressed ? 1f : 0f) - (keyboard.downArrowKey.isPressed ? 1f : 0f);
-
-        // 이동 방향 * 속도 * 프레임 보정으로 위치 이동
         transform.Translate(new Vector3(x, y, 0) * speed * Time.deltaTime);
 
-        // 스페이스바를 누른 순간(1프레임)에만 총알 1발 발사
-        if (keyboard.spaceKey.wasPressedThisFrame)
+        // GetKey : 키를 누르고 있는 동안 매 프레임 true
+        // Time.time >= nextFireTime : 마지막 발사 후 fireRate 초가 지났을 때만 발사
+        if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
+        {
             Fire();
+            // 다음 발사 가능 시각을 현재 시각 + 간격으로 갱신
+            nextFireTime = Time.time + fireRate;
+        }
+        
+        //Player 프리팹 메카님 : Idle, Left, Right 전환
+        // -1(왼쪽), 0(정지), 1(오른쪽)
+        float h = Input.GetAxisRaw("Horizontal"); 
+
+        if (h < 0) // 왼쪽 누름
+            anim.SetInteger("State", 1);
+        else if (h > 0) // 오른쪽 누름
+            anim.SetInteger("State", 2);
+        else // 아무것도 안 누름
+            anim.SetInteger("State", 0);
     }
 
     void Fire()
