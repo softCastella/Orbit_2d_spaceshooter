@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerBulletController : MonoBehaviour
 {
     public float speed = 10f;
+    public int damage = 1;
 
     void Update()
     {

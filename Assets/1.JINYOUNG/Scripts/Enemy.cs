@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
-            PlayerBullet playerBullet = other.gameObject.GetComponent<PlayerBullet>();
+            PlayerBulletController playerBullet = other.gameObject.GetComponent<PlayerBulletController>();
             Hit(playerBullet.damage);
             Destroy(other.gameObject);
         }
