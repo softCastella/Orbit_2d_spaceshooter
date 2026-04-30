@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
+        sr = GetComponent<SpriteRenderer>();
+
         // FirePoint 찾아 넣기
         firePoint0 = transform.Find("FirePoint_0");
         firePoint1 = transform.Find("FirePoint_1");
@@ -105,7 +107,8 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
             PlayerBulletController playerBullet = other.gameObject.GetComponent<PlayerBulletController>();
-            Hit(playerBullet.damage);
+            if (playerBullet != null)
+                Hit(playerBullet.damage);
             Destroy(other.gameObject);
         }
     }
@@ -121,7 +124,7 @@ public class Enemy : MonoBehaviour
         Invoke("ReturnDefaultSprite", 0.1f);
 
         // 체력이 0 이하면 점수 합산, 아이템 드랍 후 오브젝트 제거
-        // if (health <= 0)
+        // if (hp <= 0)
         // {
         //     isDead = true;
         //     GameManager gm = FindAnyObjectByType<GameManager>();
