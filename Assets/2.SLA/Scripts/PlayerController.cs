@@ -104,19 +104,19 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        // power(1~3) → bulletPrefabs 인덱스(0~2)로 변환
-        int index = Mathf.Clamp(power - 1, 0, bulletPrefabs.Length - 1);
+        // 오브젝트 풀에서 파워 단계에 맞는 총알을 꺼낸다
+        // power 1 → PlayerBullet0, power 2 이상 → PlayerBullet1
+        GameObject bullet;
+        if (power == 1)
+            bullet = ObjectPoolManager.instance.GetPlayerBullet0();
+        else
+            bullet = ObjectPoolManager.instance.GetPlayerBullet1();
 
-        // 해당 슬롯이 비어있으면 경고 후 중단
-        if (bulletPrefabs[index] == null)
-        {
-            Debug.LogWarning($"[PlayerController] bulletPrefabs[{index}]가 비어 있습니다. Inspector에서 연결해 주세요.");
-            return;
-        }
-
-        // FirePoint 위치에 총알 생성 (FirePoint 없으면 플레이어 위치 사용)
+        // 총구 위치로 이동시킨 뒤 활성화한다 (FirePoint가 없으면 플레이어 위치 사용)
         Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;
-        Instantiate(bulletPrefabs[index], spawnPos, Quaternion.identity);
+        bullet.transform.position = spawnPos;
+        bullet.transform.rotation = Quaternion.identity;
+        bullet.SetActive(true);
     }
 
     void Bomb()

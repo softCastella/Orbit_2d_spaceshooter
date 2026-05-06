@@ -9,7 +9,8 @@ public class PlayerBulletController : MonoBehaviour
     {
         transform.Translate(Vector3.up * speed * Time.fixedDeltaTime);
 
+        // 화면 위로 벗어나면 삭제하지 않고 풀로 반납한다
         if (transform.position.y > 5.5f)
-            Destroy(gameObject);
+            ObjectPoolManager.instance.ReleaseObject(gameObject);
     }
 }

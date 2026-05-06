@@ -36,8 +36,8 @@ public class ItemPickup : MonoBehaviour
 
         ApplyEffect();
 
-        // 효과를 적용한 뒤 아이템 오브젝트를 제거합니다.
-        Destroy(gameObject);
+        // 효과를 적용한 뒤 오브젝트 풀로 반납합니다.
+        ObjectPoolManager.instance.ReleaseObject(gameObject);
     }
 
     void ApplyEffect()

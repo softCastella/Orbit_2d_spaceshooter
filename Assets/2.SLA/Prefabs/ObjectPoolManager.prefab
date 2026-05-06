@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7564117203945182944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8841810986112488513}
+  - component: {fileID: 6277273530609083089}
+  m_Layer: 0
+  m_Name: ObjectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8841810986112488513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564117203945182944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.00274, y: -3.9975, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6277273530609083089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564117203945182944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c84ffe44647cb84eadadeb7241e2e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPoolManager
+  playerBullet0Prefab: {fileID: 5476846907727989139, guid: bbcc6de30b3d96245a11dca134e2bdbb, type: 3}
+  playerBullet1Prefab: {fileID: 6150875360019083962, guid: 61406c5e93d771e4bb7dab55b3da3e7f, type: 3}
+  enemyAPrefab: {fileID: 2302647426495172360, guid: 994ec9628d42ef44182a7e5f75303cb3, type: 3}
+  enemyBPrefab: {fileID: 7780833371891683777, guid: ec317f11fd09cad45a2b9698b3bf4417, type: 3}
+  enemyCPrefab: {fileID: 679989455774538238, guid: 59fb3144e960e1f45993136c4816c561, type: 3}
+  itemCoinPrefab: {fileID: 3220969345769172687, guid: 554cc18a7d0c3b0409a9b5ae04e3a64f, type: 3}
+  itemPowerPrefab: {fileID: 6737663345814535470, guid: 9eac9380ee86db44ab673092540ce21f, type: 3}
+  itemBoomPrefab: {fileID: 4894504503638642247, guid: 05ece7c0f596735459f6c26540508b9c, type: 3}
+  enemyBullet0Prefab: {fileID: 274709660098790495, guid: cdc2108af6e1d9e4d83bc541a4c4f0d4, type: 3}

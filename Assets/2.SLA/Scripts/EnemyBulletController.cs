@@ -14,11 +14,11 @@ public class EnemyBulletController : MonoBehaviour
     {
         transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
 
-        // 화면 밖으로 나가면 제거
+        // 화면 밖으로 나가면 삭제하지 않고 풀로 반납한다
         Vector3 vp = Camera.main.WorldToViewportPoint(transform.position);
         if (vp.x < -0.1f || vp.x > 1.1f || vp.y < -0.1f || vp.y > 1.1f)
         {
-            Destroy(gameObject);
+            ObjectPoolManager.instance.ReleaseObject(gameObject);
         }
     }
 
@@ -35,8 +35,8 @@ public class EnemyBulletController : MonoBehaviour
                 // Debug.Log("Player HP: " + player.hp);
             }
 
-            //총알 제거
-            Destroy(gameObject);
+            //총알 제거하지 않고 풀로 반납한다
+            ObjectPoolManager.instance.ReleaseObject(gameObject);
         }
     }
 }
